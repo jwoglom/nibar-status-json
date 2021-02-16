@@ -11,7 +11,7 @@ var wmScripts = os.Getenv("WMSCRIPTS")
 
 var workFuncs = []workFunc{
 	func(s *Status) {
-		s.DateTime.Time = time.Now().Format("03:04 PM")
+		s.DateTime.Time = time.Now().Format("03:04:05 PM")
 	},
 	func(s *Status) {
 		s.DateTime.Date = time.Now().Format("Mon")

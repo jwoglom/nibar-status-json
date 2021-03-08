@@ -3,6 +3,7 @@ package internal
 import (
 	"nibar/internal/battery"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -21,7 +22,7 @@ var cmds = []Cmd{
 		pmset := run(`pmset -g batt`, defaultTimeout)
 		bat := battery.Parse(pmset)
 
-		s.Battery.Percentage = bat.BatteryPercent
+		s.Battery.Percentage = strings.TrimSuffix(bat.BatteryPercent, "%")
 		if bat.State == battery.Charging {
 			s.Battery.Charging = "true"
 		} else {
@@ -29,9 +30,9 @@ var cmds = []Cmd{
 		}
 		s.Battery.Remaining = bat.RemainingTime
 	}},
-	{func(s *Status) {
+	/*{func(s *Status) {
 		s.Cpu.LoadAverage = "<unused>"
-	}},
+	}},*/
 	{func(s *Status) {
 		lines := runlines(`
 WIFI_INTERFACE=en0

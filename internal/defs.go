@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-type workFunc = func(s *Status)
-
 func work(wg *sync.WaitGroup, s *Status, f workFunc) {
 	defer wg.Done()
 	f(s)
@@ -20,9 +18,9 @@ func RunStatus() *Status {
 	s := NewStatus()
 	var wg sync.WaitGroup
 
-	wg.Add(len(workFuncs))
-	for _, wf := range workFuncs {
-		go work(&wg, s, wf)
+	wg.Add(len(cmds))
+	for _, cmd := range cmds {
+		go work(&wg, s, cmd.workFunc)
 	}
 
 	wg.Wait()

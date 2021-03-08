@@ -1,6 +1,11 @@
 package internal
 
-type Cmd = string
+// Cmd represents a command function along with any other parameters
+type Cmd struct {
+	workFunc workFunc
+}
+
+type workFunc = func(s *Status)
 
 // Status represents the JSON used for status output in nibar
 // type Status = map[string]interface{}

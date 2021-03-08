@@ -23,11 +23,7 @@ var cmds = []Cmd{
 		bat := battery.Parse(pmset)
 
 		s.Battery.Percentage = strings.TrimSuffix(bat.BatteryPercent, "%")
-		if bat.State == battery.Charging {
-			s.Battery.Charging = "true"
-		} else {
-			s.Battery.Charging = "false"
-		}
+		s.Battery.Charging = bat.State == battery.Charging
 		s.Battery.Remaining = bat.RemainingTime
 	}},
 	/*{func(s *Status) {

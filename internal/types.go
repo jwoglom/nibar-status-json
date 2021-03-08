@@ -40,7 +40,7 @@ type DateTime struct {
 
 type Battery struct {
 	Percentage string `json:"percentage"`
-	Charging   string `json:"charging"`
+	Charging   bool   `json:"charging"`
 	Remaining  string `json:"remaining"`
 }
 
